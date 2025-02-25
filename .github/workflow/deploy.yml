@@ -1,0 +1,42 @@
+name: Check n Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '22.x'
+
+jobs:
+  checkAndBuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Prepare Corepack
+        run: corepack prepare pnpm@9.15.5 --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: lint
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm lint
+          pnpm check
+      - name: build
+        env:
+          BASE_PATH: '/${{ github.event.repository.name }}'
+        run: |
+          pnpm build
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # this should match the `pages` option in your adapter-static options
+          path: 'build/'
