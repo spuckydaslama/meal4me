@@ -1,8 +1,8 @@
 <svelte:options runes={true} />
 
 <script lang="ts">
-	import { Carousel, CarouselContent, CarouselItem } from '$lib/components/ui/ui/carousel';
-	import type { CarouselAPI } from '$lib/components/ui/ui/carousel/context';
+	import { Carousel, CarouselContent, CarouselItem } from '$lib/components/ui/carousel';
+	import type { CarouselAPI } from '$lib/components/ui/carousel/context';
 	import { cn } from '$lib/components/utils';
 	import { fetchRandomMeal } from '$lib/mealdb/mealdbService';
 	import type { CommonMeal } from '$lib/types';

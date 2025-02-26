@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { CommonMeal } from '$lib/types';
-	import { Card, CardHeader, CardTitle, CardDescription } from '$lib/components/ui/ui/card';
-	import { CardContent } from '$lib/components/ui/ui/card/index.js';
+	import { Card, CardHeader, CardTitle, CardDescription } from '$lib/components/ui/card';
+	import { CardContent } from '$lib/components/ui/card/index.js';
 	import { MonitorPlay } from 'lucide-svelte';
-	import { Badge } from '$lib/components/ui/ui/badge';
+	import { Badge } from '$lib/components/ui/badge';
 
 	interface Props {
 		meal: CommonMeal;
